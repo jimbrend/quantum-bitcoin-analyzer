@@ -45,14 +45,25 @@ export default function Component() {
       ctx.fillStyle = 'white'
       ctx.save()
       
-      // Create a rectangle for particles instead of text
       const fontSize = isMobile ? 40 : 80
-      const textWidth = canvas.width * 0.8
-      const textHeight = fontSize * 2
-      const x = (canvas.width - textWidth) / 2
-      const y = (canvas.height - textHeight) / 2
+      const line1 = "Are you a"
+      const line2 = "safe Bitcoiner?"
+      const quantumText = "quantum"
       
-      ctx.fillRect(x, y, textWidth, textHeight)
+      // Draw "Are you a" and "safe Bitcoiner?" as HTML
+      // Draw "quantum" as particles
+      ctx.font = `bold ${fontSize}px sans-serif`
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      
+      // Calculate positions
+      const quantumWidth = ctx.measureText(quantumText).width
+      const line1Width = ctx.measureText(line1).width
+      const line2Width = ctx.measureText(line2).width
+      const totalWidth = Math.max(line1Width, line2Width, quantumWidth)
+      
+      // Draw "quantum" for particles
+      ctx.fillText(quantumText, canvas.width / 2, canvas.height / 2)
       
       ctx.restore()
 
@@ -226,7 +237,9 @@ export default function Component() {
         style={{ pointerEvents: 'auto' }}
       >
         <h1 className="text-4xl md:text-6xl font-bold text-white hover:text-orange-400 transition-colors duration-300">
-          Are you a quantum<br />safe Bitcoiner?
+          Are you a<br />
+          <span className="invisible">quantum</span><br />
+          safe Bitcoiner?
         </h1>
       </div>
       <div className="absolute bottom-[100px] text-center z-10">
