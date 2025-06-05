@@ -5,7 +5,7 @@ A modern web application that helps users assess their Bitcoin wallet's vulnerab
 ## Contributing
 
 Feel free to submit a PR for any improvements, 
-even if you wanna even plug some other cool related project or message me on X and I'll reshare it.
+even if you wanna even plug some other cool related project or message me on [X.com/usernameisjim](https://www.x.com/usernameisjim) and I'll reshare it.
 
 ## Features
 

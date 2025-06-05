@@ -227,7 +227,7 @@ export default function Component() {
           {' '}
           
           <a 
-            href="https://vercel.fyi/v0-reinvent"
+            href="https://github.com/jimbrend/quantum-bitcoin-analyzer"
             target="_blank"
             className="invite-link text-gray-300 hover:text-cyan-400 transition-colors duration-300"
           >
@@ -236,7 +236,7 @@ export default function Component() {
           <span>and always remember,</span>
           <span className="transition-colors duration-300">
             {' '}never give out your seed phrase. 
-          </span> <br /><a href="https://v0.dev/chat/RqstUbkUVcB?b=b_BoU5qmQ0ehp" className="text-gray-500 text-xs mt-2.5 inline-block" target="_blank">(x.com/usernameisjim)</a>
+          </span> <br /><a href="https://www.x.com/usernameisjim" className="text-gray-500 text-xs mt-2.5 inline-block" target="_blank">(x.com/usernameisjim)</a>
         
           <style>{`
             a.invite-link:hover + span + span {
