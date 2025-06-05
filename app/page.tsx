@@ -198,7 +198,7 @@ export default function Page() {
                   <h4 className="font-medium">Learn More</h4>
                   <div className="space-y-2">
                     <a
-                      href="https://cointelegraph.com/news/quantum-computers-could-break-bitcoin-encryption-by-2022"
+                      href="https://cointelegraph.com/explained/the-q-day-prize-challenge-explained-can-quantum-computers-really-break-bitcoin"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center text-orange-200 hover:text-orange-300"
@@ -444,7 +444,7 @@ export default function Page() {
                     <h4 className="font-medium">Learn More</h4>
                     <div className="space-y-2">
                       <a
-                        href="https://cointelegraph.com/news/quantum-computers-could-break-bitcoin-encryption-by-2022"
+                        href="https://cointelegraph.com/explained/the-q-day-prize-challenge-explained-can-quantum-computers-really-break-bitcoin"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center text-orange-200 hover:text-orange-300"
@@ -552,7 +552,7 @@ export default function Page() {
                       <h4 className="font-medium">External Resources</h4>
                       <div className="space-y-2">
                         <a
-                          href="https://cointelegraph.com/news/quantum-computers-could-break-bitcoin-encryption-by-2022"
+                          href="https://cointelegraph.com/explained/the-q-day-prize-challenge-explained-can-quantum-computers-really-break-bitcoin"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center text-orange-200 hover:text-orange-300"
