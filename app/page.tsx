@@ -254,7 +254,7 @@ export default function Page() {
                         <strong>Current Status:</strong> No quantum threat yet (In reality there is no quantum threat yet)
                       </p>
                       <p>
-                        <strong>Estimated Timeline:</strong> 10-20 years for cryptographically relevant quantum computers
+                        <strong>Estimated Timeline:</strong> 5-15 years for cryptographically relevant quantum computers
                       </p>
                       <p>
                         <strong>Vulnerable Wallets:</strong> P2PKH addresses (starting with "1") with exposed public keys
@@ -284,7 +284,7 @@ export default function Page() {
                         <strong>Current Status:</strong> No quantum threat yet (In reality there is no quantum threat yet)
                       </p>
                       <p>
-                        <strong>Estimated Timeline:</strong> 10-20 years for cryptographically relevant quantum computers
+                        <strong>Estimated Timeline:</strong> 5-15 years for cryptographically relevant quantum computers
                       </p>
                       <p>
                         <strong>Vulnerable Wallets:</strong> P2PKH addresses (starting with "1") with exposed public keys
@@ -500,7 +500,7 @@ export default function Page() {
                           <strong>Current Status:</strong> No quantum threat yet (In reality there is no quantum threat yet)
                         </p>
                         <p>
-                          <strong>Estimated Timeline:</strong> 10-20 years for cryptographically relevant quantum computers
+                          <strong>Estimated Timeline:</strong> 5-15 years for cryptographically relevant quantum computers
                         </p>
                         <p>
                           <strong>Vulnerable Wallets:</strong> P2PKH addresses (starting with "1") with exposed public keys
@@ -530,7 +530,7 @@ export default function Page() {
                           <strong>Current Status:</strong> No quantum threat yet (In reality there is no quantum threat yet)
                         </p>
                         <p>
-                          <strong>Estimated Timeline:</strong> 10-20 years for cryptographically relevant quantum computers
+                          <strong>Estimated Timeline:</strong> 5-15 years for cryptographically relevant quantum computers
                         </p>
                         <p>
                           <strong>Vulnerable Wallets:</strong> P2PKH addresses (starting with "1") with exposed public keys
