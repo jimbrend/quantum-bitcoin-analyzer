@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Shield, AlertTriangle, ExternalLink, ArrowRight, ArrowLeft } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
+import VercelLogoParticles from "@/vercel-logo-particles"
 
 interface Question {
   id: string
@@ -72,10 +73,19 @@ const questions: Question[] = [
 ]
 
 export default function Page() {
+  const [showSplash, setShowSplash] = useState(true)
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({})
   const [showResults, setShowResults] = useState(false)
   const [showExplanation, setShowExplanation] = useState(false)
+
+  if (showSplash) {
+    return (
+      <div onClick={() => setShowSplash(false)} style={{ cursor: 'pointer' }}>
+        <VercelLogoParticles />
+      </div>
+    )
+  }
 
   const handleAnswer = (value: string) => {
     const question = questions[currentStep]

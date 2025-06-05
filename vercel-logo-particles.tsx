@@ -45,15 +45,14 @@ export default function Component() {
       ctx.fillStyle = 'white'
       ctx.save()
       
+      // Create a rectangle for particles instead of text
       const fontSize = isMobile ? 40 : 80
-      const line1 = "Are you a quantum"
-      const line2 = "safe Bitcoiner?"
+      const textWidth = canvas.width * 0.8
+      const textHeight = fontSize * 2
+      const x = (canvas.width - textWidth) / 2
+      const y = (canvas.height - textHeight) / 2
       
-      ctx.font = `bold ${fontSize}px sans-serif`
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
-      ctx.fillText(line1, canvas.width / 2, canvas.height / 2 - fontSize/2)
-      ctx.fillText(line2, canvas.width / 2, canvas.height / 2 + fontSize/2)
+      ctx.fillRect(x, y, textWidth, textHeight)
       
       ctx.restore()
 
@@ -222,6 +221,14 @@ export default function Component() {
         className="w-full h-full absolute top-0 left-0 touch-none"
         aria-label="Interactive particle effect with Vercel and AWS logos"
       />
+      <div 
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center cursor-pointer z-20"
+        style={{ pointerEvents: 'auto' }}
+      >
+        <h1 className="text-4xl md:text-6xl font-bold text-white hover:text-orange-400 transition-colors duration-300">
+          Are you a quantum<br />safe Bitcoiner?
+        </h1>
+      </div>
       <div className="absolute bottom-[100px] text-center z-10">
         <p className="font-mono text-gray-400 text-xs sm:text-base md:text-sm ">
           {' '}
