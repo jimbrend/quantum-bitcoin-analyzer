@@ -288,36 +288,6 @@ export default function Page() {
                 Start Over
               </Button>
             </div>
-
-            <Card className="border-orange-500/30 bg-black">
-              <CardContent className="pt-6">
-                <div className="flex items-start gap-3">
-                  <ExternalLink className="h-5 w-5 text-orange-200 mt-0.5" />
-                  <div>
-                    <a
-                      href="https://cointelegraph.com/explained/the-q-day-prize-challenge-explained-can-quantum-computers-really-break-bitcoin"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-orange-200 hover:text-orange-300"
-                    >
-                      <h4 className="font-semibold">Learn More About Quantum Threats</h4>
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                    <p className="text-orange-200/70 text-sm mt-1">
-                      Read trending news on Coin Telegraph.
-                    </p>
-                    <a
-                      href="https://grok.com/share/bGVnYWN5_00652d44-2da0-4eaf-bfed-4bc1e39fbe06"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-orange-200 hover:text-orange-300 text-sm font-medium mt-2"
-                    >
-                      Search Grok for the latest research and expert analysis on quantum's impact on Bitcoin. <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </CardContent>
         </Card>
       </div>
@@ -408,36 +378,6 @@ export default function Page() {
               </AlertDescription>
             </Alert>
           )}
-
-          <Card className="border-orange-500/30 bg-black">
-            <CardContent className="pt-6">
-              <div className="flex items-start gap-3">
-                <ExternalLink className="h-5 w-5 text-orange-200 mt-0.5" />
-                <div>
-                  <a
-                    href="https://cointelegraph.com/explained/the-q-day-prize-challenge-explained-can-quantum-computers-really-break-bitcoin"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-orange-200 hover:text-orange-300"
-                  >
-                    <h4 className="font-semibold">Learn More About Quantum Threats</h4>
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
-                  <p className="text-orange-200/70 text-sm mt-1">
-                    Read trending news on Coin Telegraph.
-                  </p>
-                  <a
-                    href="https://grok.com/share/bGVnYWN5_00652d44-2da0-4eaf-bfed-4bc1e39fbe06"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-orange-200 hover:text-orange-300 text-sm font-medium mt-2"
-                  >
-                    Search Grok for the latest research and expert analysis on quantum's impact on Bitcoin. <ExternalLink className="h-3 w-3" />
-                  </a>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
         </CardContent>
       </Card>
     </div>
