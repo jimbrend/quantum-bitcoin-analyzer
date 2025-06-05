@@ -257,7 +257,6 @@ export default function Component() {
       <div className="absolute bottom-[100px] text-center z-10">
         <p className="font-mono text-gray-400 text-xs sm:text-base md:text-sm ">
           {' '}
-          
           <a 
             href="https://github.com/jimbrend/quantum-bitcoin-analyzer"
             target="_blank"
@@ -266,12 +265,11 @@ export default function Component() {
             Click here to see the source code available for this project,
           </a>{' '}
           <span>and always remember,</span>
-          <span className="transition-colors duration-300">
+          <span className="seed-warning transition-colors duration-300">
             {' '}never give out your seed phrase. 
           </span> <br /><a href="https://www.x.com/usernameisjim" className="text-gray-500 text-xs mt-2.5 inline-block" target="_blank">(x.com/usernameisjim)</a>
-        
           <style>{`
-            a.invite-link:hover + span + span {
+            a.invite-link:hover ~ .seed-warning {
               color: #FF9900;
             }
           `}</style>

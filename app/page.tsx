@@ -207,7 +207,7 @@ export default function Page() {
                       Coin Telegraph Article on Quantum Bitcoin Threat
                     </a>
                     <a
-                      href="https://grok.x.ai/search?q=quantum+bitcoin+security"
+                      href="https://grok.com/share/bGVnYWN5_00652d44-2da0-4eaf-bfed-4bc1e39fbe06"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center text-orange-200 hover:text-orange-300"
@@ -453,7 +453,7 @@ export default function Page() {
                         Coin Telegraph Article on Quantum Bitcoin Threat
                       </a>
                       <a
-                        href="https://grok.x.ai/search?q=quantum+bitcoin+security"
+                        href="https://grok.com/share/bGVnYWN5_00652d44-2da0-4eaf-bfed-4bc1e39fbe06"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center text-orange-200 hover:text-orange-300"
@@ -561,7 +561,7 @@ export default function Page() {
                           Coin Telegraph Article on Quantum Bitcoin Threat
                         </a>
                         <a
-                          href="https://grok.x.ai/search?q=quantum+bitcoin+security"
+                          href="https://grok.com/share/bGVnYWN5_00652d44-2da0-4eaf-bfed-4bc1e39fbe06"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center text-orange-200 hover:text-orange-300"
