@@ -12,7 +12,7 @@ even if you wanna even plug some other cool related project or message me on [X.
 - Interactive quiz to assess wallet security
 - Real-time risk assessment
 - Beautiful particle effects and animations
-(utilizng Vercel AWS template)
+(utilizing Vercel AWS template)
 - Privacy-focused (no data storage)
 - Modern, responsive design 
 (feel free to create issue if you had a problem on mobile)
