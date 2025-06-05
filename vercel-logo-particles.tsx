@@ -50,20 +50,15 @@ export default function Component() {
       const line2 = "safe Bitcoiner?"
       const quantumText = "quantum"
       
-      // Draw "Are you a" and "safe Bitcoiner?" as HTML
-      // Draw "quantum" as particles
+      // Draw all text for particles
       ctx.font = `bold ${fontSize}px sans-serif`
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
       
-      // Calculate positions
-      const quantumWidth = ctx.measureText(quantumText).width
-      const line1Width = ctx.measureText(line1).width
-      const line2Width = ctx.measureText(line2).width
-      const totalWidth = Math.max(line1Width, line2Width, quantumWidth)
-      
-      // Draw "quantum" for particles
+      // Draw all text for particles
+      ctx.fillText(line1, canvas.width / 2, canvas.height / 2 - fontSize)
       ctx.fillText(quantumText, canvas.width / 2, canvas.height / 2)
+      ctx.fillText(line2, canvas.width / 2, canvas.height / 2 + fontSize)
       
       ctx.restore()
 
@@ -84,6 +79,9 @@ export default function Component() {
         const y = Math.floor(Math.random() * canvas.height)
 
         if (data[(y * canvas.width + x) * 4 + 3] > 128) {
+          // Check if this particle is in the "quantum" text area
+          const isQuantum = y > canvas.height / 2 - 20 && y < canvas.height / 2 + 20
+          
           return {
             x: x,
             y: y,
@@ -91,7 +89,7 @@ export default function Component() {
             baseY: y,
             size: Math.random() * 1 + 0.5,
             color: 'white',
-            scatteredColor: '#FF9900',
+            scatteredColor: isQuantum ? '#FF9900' : '#FF9900',
             isAWS: false,
             life: Math.random() * 100 + 50
           }
