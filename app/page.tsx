@@ -288,6 +288,36 @@ export default function Page() {
                 Start Over
               </Button>
             </div>
+
+            <Card className="border-orange-500/30 bg-black">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-3">
+                  <ExternalLink className="h-5 w-5 text-orange-200 mt-0.5" />
+                  <div>
+                    <a
+                      href="https://cointelegraph.com/explained/the-q-day-prize-challenge-explained-can-quantum-computers-really-break-bitcoin"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-orange-200 hover:text-orange-300"
+                    >
+                      <h4 className="font-semibold">Learn More About Quantum Threats</h4>
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                    <p className="text-orange-200/70 text-sm mt-1">
+                      Read trending news on Coin Telegraph.
+                    </p>
+                    <a
+                      href="https://grok.com/share/bGVnYWN5_00652d44-2da0-4eaf-bfed-4bc1e39fbe06"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-orange-200 hover:text-orange-300 text-sm font-medium mt-2"
+                    >
+                      Search Grok for the latest research and expert analysis on quantum's impact on Bitcoin. <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </CardContent>
         </Card>
       </div>
@@ -317,13 +347,16 @@ export default function Page() {
             {currentQuestion.allowMultiple ? (
               <div className="space-y-2">
                 {currentQuestion.options.map((option) => (
-                  <div key={option.value} className="flex items-center space-x-2">
+                  <div key={option.value} className="flex items-center space-x-2 p-3 rounded-lg border border-orange-500/30 hover:bg-muted/50">
                     <Checkbox
                       id={option.value}
                       checked={(answers[currentQuestion.id] as string[])?.includes(option.value)}
                       onCheckedChange={() => handleAnswer(option.value)}
+                      className="border-orange-500/30 data-[state=checked]:bg-orange-500/30 data-[state=checked]:border-orange-500/30"
                     />
-                    <Label htmlFor={option.value}>{option.label}</Label>
+                    <Label htmlFor={option.value} className="flex-1 cursor-pointer">
+                      {option.label}
+                    </Label>
                   </div>
                 ))}
               </div>
@@ -334,9 +367,11 @@ export default function Page() {
                 className="space-y-2"
               >
                 {currentQuestion.options.map((option) => (
-                  <div key={option.value} className="flex items-center space-x-2">
+                  <div key={option.value} className="flex items-center space-x-2 p-3 rounded-lg border border-orange-500/30 hover:bg-muted/50">
                     <RadioGroupItem value={option.value} id={option.value} />
-                    <Label htmlFor={option.value}>{option.label}</Label>
+                    <Label htmlFor={option.value} className="flex-1 cursor-pointer">
+                      {option.label}
+                    </Label>
                   </div>
                 ))}
               </RadioGroup>
@@ -365,6 +400,44 @@ export default function Page() {
               </Button>
             )}
           </div>
+
+          {currentQuestion.allowMultiple && (
+            <Alert className="bg-black border-orange-500/30">
+              <AlertDescription className="text-orange-200/70">
+                <strong className="text-orange-200">Note:</strong> Your answers are not saved anywhere. You can verify this in the network console of your browser, and in the source code, these answers are used as examples with no bias, and is cleared when you refresh or close the page.
+              </AlertDescription>
+            </Alert>
+          )}
+
+          <Card className="border-orange-500/30 bg-black">
+            <CardContent className="pt-6">
+              <div className="flex items-start gap-3">
+                <ExternalLink className="h-5 w-5 text-orange-200 mt-0.5" />
+                <div>
+                  <a
+                    href="https://cointelegraph.com/explained/the-q-day-prize-challenge-explained-can-quantum-computers-really-break-bitcoin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-orange-200 hover:text-orange-300"
+                  >
+                    <h4 className="font-semibold">Learn More About Quantum Threats</h4>
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                  <p className="text-orange-200/70 text-sm mt-1">
+                    Read trending news on Coin Telegraph.
+                  </p>
+                  <a
+                    href="https://grok.com/share/bGVnYWN5_00652d44-2da0-4eaf-bfed-4bc1e39fbe06"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-orange-200 hover:text-orange-300 text-sm font-medium mt-2"
+                  >
+                    Search Grok for the latest research and expert analysis on quantum's impact on Bitcoin. <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </CardContent>
       </Card>
     </div>
