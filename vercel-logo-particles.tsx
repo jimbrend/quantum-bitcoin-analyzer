@@ -45,7 +45,7 @@ export default function Component() {
       ctx.fillStyle = 'white'
       ctx.save()
       
-      const fontSize = isMobile ? 40 : 80
+      const fontSize = isMobile ? 80 : 160 // Much larger text
       const line1 = "Are you a"
       const line2 = "safe Bitcoiner?"
       const quantumText = "quantum"
@@ -100,11 +100,25 @@ export default function Component() {
     }
 
     function createInitialParticles(scale: number) {
-      const baseParticleCount = 7000 // Increased base count for higher density
+      const baseParticleCount = 15000 // Increased for more background particles
       const particleCount = Math.floor(baseParticleCount * Math.sqrt((canvas.width * canvas.height) / (1920 * 1080)))
+      
+      // Create quantum gate pattern particles
       for (let i = 0; i < particleCount; i++) {
         const particle = createParticle(scale)
-        if (particle) particles.push(particle)
+        if (particle) {
+          // Add quantum gate pattern
+          const angle = (i / particleCount) * Math.PI * 2
+          const radius = Math.min(canvas.width, canvas.height) * 0.4
+          particle.baseX = canvas.width / 2 + Math.cos(angle) * radius
+          particle.baseY = canvas.height / 2 + Math.sin(angle) * radius
+          particle.x = particle.baseX
+          particle.y = particle.baseY
+          particle.size = Math.random() * 0.5 + 0.2 // Smaller particles for background
+          particle.color = 'rgba(255, 255, 255, 0.3)' // More transparent
+          particle.scatteredColor = 'rgba(255, 153, 0, 0.3)' // More transparent orange
+          particles.push(particle)
+        }
       }
     }
 
@@ -135,9 +149,15 @@ export default function Component() {
           
           ctx.fillStyle = p.scatteredColor
         } else {
+          // Add quantum gate rotation effect
+          const time = Date.now() * 0.001
+          const angle = time + (i / particles.length) * Math.PI * 2
+          const radius = Math.min(canvas.width, canvas.height) * 0.4
+          p.baseX = canvas.width / 2 + Math.cos(angle) * radius
+          p.baseY = canvas.height / 2 + Math.sin(angle) * radius
           p.x += (p.baseX - p.x) * 0.1
           p.y += (p.baseY - p.y) * 0.1
-          ctx.fillStyle = 'white' 
+          ctx.fillStyle = p.color
         }
 
         ctx.fillRect(p.x, p.y, p.size, p.size)
@@ -152,13 +172,6 @@ export default function Component() {
             i--
           }
         }
-      }
-
-      const baseParticleCount = 7000
-      const targetParticleCount = Math.floor(baseParticleCount * Math.sqrt((canvas.width * canvas.height) / (1920 * 1080)))
-      while (particles.length < targetParticleCount) {
-        const newParticle = createParticle(scale)
-        if (newParticle) particles.push(newParticle)
       }
 
       animationFrameId = requestAnimationFrame(() => animate(scale))
@@ -227,17 +240,18 @@ export default function Component() {
     <div className="relative w-full h-dvh flex flex-col items-center justify-center bg-black">
       <canvas 
         ref={canvasRef} 
-        className="w-full h-full absolute top-0 left-0 touch-none"
+        className="w-full h-full absolute top-0 left-0 touch-none cursor-pointer"
         aria-label="Interactive particle effect with Vercel and AWS logos"
+        onClick={() => setShowSplash(false)}
       />
       <div 
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center cursor-pointer z-20"
         style={{ pointerEvents: 'auto' }}
       >
-        <h1 className="text-4xl md:text-6xl font-bold text-white hover:text-orange-400 transition-colors duration-300">
-          Are you a<br />
+        <h1 className="text-2xl md:text-3xl font-mono text-white hover:text-orange-400 transition-colors duration-300">
+          Are you a Quantum Safe<br />
           <span className="invisible">quantum</span><br />
-          safe Bitcoiner?
+          Bitcoiner?
         </h1>
       </div>
       <div className="absolute bottom-[100px] text-center z-10">
