@@ -27,7 +27,8 @@ even if you wanna even plug some other cool related project or message me on [X.
 - Framer Motion
 - Vercel Deployment
 
-## Getting Started
+## Some steps to run it all locally instead of on Vercel, 
+You'll have to re-hardcode the router after the splash page to a different port like 3001...
 
 1. Clone the repository:
 ```bash
