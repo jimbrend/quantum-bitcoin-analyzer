@@ -152,6 +152,8 @@ export default function Page() {
   const prevStep = () => {
     if (currentStep > 0) {
       setCurrentStep(currentStep - 1)
+    } else {
+      setShowSplash(true)
     }
   }
 
@@ -184,8 +186,48 @@ export default function Page() {
                   ? "You chose you lived in the future so you're not safe, but don't be worried, Bitcoiners will probably fix this"
                   : riskLevel.description}
               </p>
-              <p className="text-sm mt-1">Risk Score: {riskScore}/12</p>
+              <p className="text-sm mt-1">Risk Percentage: {Math.round((riskScore / 12) * 100)}%</p>
             </div>
+
+            <Card className="mt-6">
+              <CardHeader>
+                <CardTitle>External Resources</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-2">
+                  <h4 className="font-medium">Learn More</h4>
+                  <div className="space-y-2">
+                    <a
+                      href="https://cointelegraph.com/news/quantum-computers-could-break-bitcoin-encryption-by-2022"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-orange-200 hover:text-orange-300"
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Coin Telegraph Article on Quantum Bitcoin Threat
+                    </a>
+                    <a
+                      href="https://grok.x.ai/search?q=quantum+bitcoin+security"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-orange-200 hover:text-orange-300"
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Search Grok for Quantum Bitcoin Security
+                    </a>
+                    <a
+                      href="https://bitcoin.org/en/choose-your-wallet?step=1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-orange-200 hover:text-orange-300"
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      More about Bitcoin wallets via Bitcoin.org here
+                    </a>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
             <Alert>
               <AlertTriangle className="h-4 w-4" />
@@ -193,6 +235,8 @@ export default function Page() {
                 <strong>What is the Quantum Threat?</strong>
                 <br />
                 Quantum computers could potentially break the cryptographic algorithms that secure Bitcoin wallets.
+                This threat is still not realized, and mostly in a research phase.
+                Quantum computers are not optimized like modern platforms, they do not yet scale to pose a serious threat.
                 Legacy wallets using older address formats (starting with "1") are most vulnerable because they expose
                 public keys when spending, which quantum computers could use to derive private keys.
               </AlertDescription>
@@ -255,31 +299,25 @@ export default function Page() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Next Steps</CardTitle>
+                  <CardTitle>Recommended Actions</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <h4 className="font-medium">For High Risk Wallets:</h4>
-                    <ul className="list-disc pl-4 space-y-1 text-sm">
-                      <li>Consider moving funds to a modern wallet</li>
-                      <li>Use hardware wallets for better security</li>
-                      <li>Always generate new addresses for receiving</li>
-                    </ul>
-                  </div>
-                  <div className="space-y-2">
-                    <h4 className="font-medium">For Medium Risk Wallets:</h4>
-                    <ul className="list-disc pl-4 space-y-1 text-sm">
-                      <li>Update to the latest wallet software</li>
-                      <li>Enable SegWit or Taproot addresses</li>
+                    <h4 className="font-medium">Immediate Steps</h4>
+                    <ul className="list-disc list-inside space-y-1 text-sm">
+                      <li>Use a modern Bitcoin wallet (2020 or newer)</li>
+                      <li>Enable SegWit or Native SegWit addresses</li>
                       <li>Consider using a hardware wallet</li>
+                      <li>Keep your wallet software updated</li>
                     </ul>
                   </div>
                   <div className="space-y-2">
-                    <h4 className="font-medium">For Low Risk Wallets:</h4>
-                    <ul className="list-disc pl-4 space-y-1 text-sm">
-                      <li>Keep your wallet software updated</li>
-                      <li>Continue using new addresses</li>
-                      <li>Stay informed about quantum developments</li>
+                    <h4 className="font-medium">Long-term Security</h4>
+                    <ul className="list-disc list-inside space-y-1 text-sm">
+                      <li>Monitor quantum computing developments</li>
+                      <li>Stay informed about Bitcoin protocol updates</li>
+                      <li>Consider using a multi-signature setup</li>
+                      <li>Keep your private keys secure and offline</li>
                     </ul>
                   </div>
                 </CardContent>
@@ -304,89 +342,248 @@ export default function Page() {
     )
   }
 
-  const currentQuestion = questions[currentStep]
-
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
+      {!showResults && (
+        <div className="flex justify-between items-center mb-6">
+          <Progress value={progress} className="w-full" />
+        </div>
+      )}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Shield className="h-6 w-6" />
-            Bitcoin Wallet Quantum Risk Analyzer
-          </CardTitle>
-          <CardDescription>
-            Answer a few questions to assess your wallet's vulnerability to quantum computing threats
+          <CardTitle className="text-orange-200">Quantum Bitcoin Security Assessment</CardTitle>
+          <CardDescription className="text-orange-200/70">
+            {showResults ? 'Your Results' : `Question ${currentStep + 1} of ${questions.length}`}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          <Progress value={progress} className="h-2" />
-          
-          <div className="space-y-4">
-            <h3 className="text-lg font-medium">{currentQuestion.question}</h3>
-            
-            {currentQuestion.allowMultiple ? (
-              <div className="space-y-2">
-                {currentQuestion.options.map((option) => (
-                  <div key={option.value} className="flex items-center space-x-2 p-3 rounded-lg border border-orange-500/30 hover:bg-muted/50">
-                    <Checkbox
-                      id={option.value}
-                      checked={(answers[currentQuestion.id] as string[])?.includes(option.value)}
-                      onCheckedChange={() => handleAnswer(option.value)}
-                      className="border-orange-500/30 data-[state=checked]:bg-orange-500/30 data-[state=checked]:border-orange-500/30"
-                    />
-                    <Label htmlFor={option.value} className="flex-1 cursor-pointer">
-                      {option.label}
-                    </Label>
+          {!showResults ? (
+            <>
+              <div className="space-y-4">
+                <h3 className="text-lg font-medium text-orange-200">{questions[currentStep].question}</h3>
+                {questions[currentStep].explanation && (
+                  <div className="text-sm text-orange-200/70">
+                    <strong>Why this is important:</strong> {questions[currentStep].explanation}
                   </div>
-                ))}
+                )}
+                {questions[currentStep].allowMultiple ? (
+                  <div className="space-y-2">
+                    {questions[currentStep].options.map((option) => (
+                      <div key={option.value} className="flex items-center space-x-2 p-3 rounded-lg border border-orange-500/30 hover:bg-muted/50">
+                        <Checkbox
+                          id={option.value}
+                          checked={(answers[questions[currentStep].id] as string[])?.includes(option.value)}
+                          onCheckedChange={() => handleAnswer(option.value)}
+                          className="border-orange-500/30 data-[state=checked]:bg-orange-500/30 data-[state=checked]:border-orange-500/30"
+                        />
+                        <Label htmlFor={option.value} className="flex-1 cursor-pointer text-orange-200">
+                          {option.label}
+                        </Label>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <RadioGroup
+                    value={answers[questions[currentStep].id] as string}
+                    onValueChange={handleAnswer}
+                    className="space-y-2"
+                  >
+                    {questions[currentStep].options.map((option) => (
+                      <div key={option.value} className="flex items-center space-x-2 p-3 rounded-lg border border-orange-500/30 hover:bg-muted/50">
+                        <RadioGroupItem
+                          value={option.value}
+                          id={option.value}
+                          className="border-orange-500/30 data-[state=checked]:bg-orange-500 data-[state=checked]:text-orange-900"
+                        />
+                        <Label htmlFor={option.value} className="flex-1 cursor-pointer text-orange-200">
+                          {option.label}
+                        </Label>
+                      </div>
+                    ))}
+                  </RadioGroup>
+                )}
               </div>
-            ) : (
-              <RadioGroup
-                value={answers[currentQuestion.id] as string}
-                onValueChange={handleAnswer}
-                className="space-y-2"
-              >
-                {currentQuestion.options.map((option) => (
-                  <div key={option.value} className="flex items-center space-x-2 p-3 rounded-lg border border-orange-500/30 hover:bg-muted/50">
-                    <RadioGroupItem value={option.value} id={option.value} />
-                    <Label htmlFor={option.value} className="flex-1 cursor-pointer">
-                      {option.label}
-                    </Label>
+              <div className="flex justify-between mt-6">
+                {currentStep > 0 && (
+                  <Button
+                    variant="outline"
+                    onClick={prevStep}
+                    className="px-6 py-2 rounded-lg hover:bg-orange-500/20 border-orange-500/30 text-orange-200"
+                  >
+                    <ArrowLeft className="mr-2 h-4 w-4" />
+                    Previous
+                  </Button>
+                )}
+                <div className="flex-1" />
+                <Button onClick={nextStep} className="px-6 py-2 rounded-lg bg-orange-500/30 hover:bg-orange-500/40 text-orange-200">
+                  Next
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="text-center">
+                <Badge variant={getRiskLevel(calculateRiskScore()).color as any} className="text-lg px-4 py-2">
+                  {getRiskLevel(calculateRiskScore()).level} Risk
+                </Badge>
+                <p className="mt-2 text-muted-foreground">
+                  {answers["creation-year"] === "2025"
+                    ? "You chose you lived in the future so you're not safe, but don't be worried, Bitcoiners will probably fix this"
+                    : getRiskLevel(calculateRiskScore()).description}
+                </p>
+                <p className="text-sm mt-1">Risk Percentage: {Math.round((calculateRiskScore() / 12) * 100)}%</p>
+              </div>
+
+              <Card className="mt-6">
+                <CardHeader>
+                  <CardTitle>External Resources</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="space-y-2">
+                    <h4 className="font-medium">Learn More</h4>
+                    <div className="space-y-2">
+                      <a
+                        href="https://cointelegraph.com/news/quantum-computers-could-break-bitcoin-encryption-by-2022"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center text-orange-200 hover:text-orange-300"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Coin Telegraph Article on Quantum Bitcoin Threat
+                      </a>
+                      <a
+                        href="https://grok.x.ai/search?q=quantum+bitcoin+security"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center text-orange-200 hover:text-orange-300"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Search Grok for Quantum Bitcoin Security
+                      </a>
+                      <a
+                        href="https://bitcoin.org/en/choose-your-wallet?step=1"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center text-orange-200 hover:text-orange-300"
+                      >
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        More about Bitcoin wallets via Bitcoin.org here
+                      </a>
+                    </div>
                   </div>
-                ))}
-              </RadioGroup>
-            )}
+                </CardContent>
+              </Card>
 
-            {currentQuestion.explanation && (
-              <Alert className="mt-4">
-                <AlertDescription>{currentQuestion.explanation}</AlertDescription>
+              <Alert>
+                <AlertTriangle className="h-4 w-4" />
+                <AlertDescription>
+                  <strong>What is the Quantum Threat?</strong>
+                  <br />
+                  Quantum computers could potentially break the cryptographic algorithms that secure Bitcoin wallets.
+                  This threat is still not realized, and mostly in a research phase.
+                  Quantum computers are not optimized like modern platforms, they do not yet scale to pose a serious threat.
+                  Legacy wallets using older address formats (starting with "1") are most vulnerable because they expose
+                  public keys when spending, which quantum computers could use to derive private keys.
+                </AlertDescription>
               </Alert>
-            )}
-          </div>
 
-          <div className="flex justify-between">
-            <Button
-              variant="outline"
-              onClick={prevStep}
-              disabled={currentStep === 0}
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Previous
-            </Button>
-            {currentQuestion.allowMultiple && (
-              <Button onClick={nextStep}>
-                Next
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Button>
-            )}
-          </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Current Status</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-sm">
+                    {answers["creation-year"] === "2025" ? (
+                      <>
+                        <p>
+                          <strong>Current Status:</strong> No quantum threat yet (In reality there is no quantum threat yet)
+                        </p>
+                        <p>
+                          <strong>Estimated Timeline:</strong> 10-20 years for cryptographically relevant quantum computers
+                        </p>
+                        <p>
+                          <strong>Vulnerable Wallets:</strong> P2PKH addresses (starting with "1") with exposed public keys
+                        </p>
+                        <p>
+                          <strong>Safe Practices:</strong> Use new addresses, modern wallet software, and hardware wallets
+                        </p>
+                        <Button 
+                          variant="outline" 
+                          className="w-full mt-4"
+                          onClick={() => {
+                            setCurrentStep(0)
+                            setAnswers({})
+                            setShowResults(false)
+                          }}
+                        >
+                          Click here to come back to the present
+                        </Button>
+                        <div className="mt-4 space-y-2 text-orange-500">
+                          <p>You're living in the future!</p>
+                          <p>Bitcoin's security is being tested.</p>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <p>
+                          <strong>Current Status:</strong> No quantum threat yet (In reality there is no quantum threat yet)
+                        </p>
+                        <p>
+                          <strong>Estimated Timeline:</strong> 10-20 years for cryptographically relevant quantum computers
+                        </p>
+                        <p>
+                          <strong>Vulnerable Wallets:</strong> P2PKH addresses (starting with "1") with exposed public keys
+                        </p>
+                        <p>
+                          <strong>Safe Practices:</strong> Use new addresses, modern wallet software, and hardware wallets
+                        </p>
+                      </>
+                    )}
+                  </CardContent>
+                </Card>
 
-          {currentQuestion.allowMultiple && (
-            <Alert className="bg-black border-orange-500/30">
-              <AlertDescription className="text-orange-200/70">
-                <strong className="text-orange-200">Note:</strong> Your answers are not saved anywhere. You can verify this in the network console of your browser, and in the source code, these answers are used as examples with no bias, and is cleared when you refresh or close the page.
-              </AlertDescription>
-            </Alert>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Learn More</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <h4 className="font-medium">External Resources</h4>
+                      <div className="space-y-2">
+                        <a
+                          href="https://cointelegraph.com/news/quantum-computers-could-break-bitcoin-encryption-by-2022"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center text-orange-200 hover:text-orange-300"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Coin Telegraph Article on Quantum Bitcoin Threat
+                        </a>
+                        <a
+                          href="https://grok.x.ai/search?q=quantum+bitcoin+security"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center text-orange-200 hover:text-orange-300"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Search Grok for Quantum Bitcoin Security
+                        </a>
+                        <a
+                          href="https://bitcoin.org/en/choose-your-wallet?step=1"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center text-orange-200 hover:text-orange-300"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          More about Bitcoin wallets via Bitcoin.org here
+                        </a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </>
           )}
         </CardContent>
       </Card>
